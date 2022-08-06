@@ -1,0 +1,75 @@
+<html>
+
+<head>
+    <title> Article </title>
+    <link rel="shortcut icon" type="image/x-icon" href="{{url_for('static', filename='favicon.png')}}">
+    <link href="{{url_for('static', filename='css/bootstrap.css')}}" rel="stylesheet" type="text/css">
+    <link href="{{url_for('static', filename='css/bootstrap.min.css')}}" rel="stylesheet" type="text/css">
+    <link href="{{url_for('static', filename='css/style2.css')}}" rel="stylesheet" type="text/css">
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css" rel="stylesheet" />
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"> </script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"> </script>
+    <style>
+        body {
+            overflow-x: hidden;
+        }
+    </style>
+</head>
+
+<body>
+    {% if "admin" in user %}
+    {% include "adminheader.html" %}
+    {% elif "editor" in user %}
+    {% include "editorheader.html" %}
+    {% else %}
+    {% include "userheader.html" %}
+    {%endif%}
+    {% for mesg in get_flashed_messages() %}
+    <p style="text-align: center; color: crimson;">{{mesg}}</p>
+    {% endfor %}
+    <div class="container divbg col-md-8 col-md-offset-2 vert-offset-top-2" style="padding: 15px">
+        <form action="/ReadPost{{aid}}" method="POST">
+            <div class="col-md-12 col-md-offset-0">
+                <h1>
+                    {{heading}}
+                </h1>
+            </div>
+            <div class="col-md-12 col-md-offset-0">
+                <p> Category: {{category}}
+                </p>
+            </div>
+            <div class="col-md-12 col-md-offset-0">
+                <p> <i>
+                        By: {{name}} - {{email}}
+                    </i> </p>
+            </div>
+            <div class="col-md-12 col-md-offset-0">
+                <p> <i>
+                        {{date}}
+                    </i> </p>
+            </div>
+            <div class="col-md-12"> <img class="img-responsive img-rounded" height="500px" width="820px" src={{source}}
+                    alt="#"> </div>
+            <div class="col-md-3 col-md-offset-1 vert-offset-bottom-2"><select class="form-select form-select-sm"
+                    aria-label=".form-select-sm example" id="select" name="language">
+                    <option name="hi" value="Hindi" selected>Hindi</option>
+                    <option name="te" value="Telugu">Telugu</option>
+                    <option name="ta" value="Tamil">Tamil</option>
+                    <option name="kn" value="Kannada">Kannada</option>
+                </select> <button type='submit' class='btn btn-success' name='submit_button' value='Translate'
+                    id="Translate"> Translate </button> </div>
+
+            <div class="col-md-3 col-md-offset-1 vert-offset-bottom-2"> <button type='submit' class='btn btn-primary'
+                    name='submit_button' value='Summarize' id="Summarize"> Summarize </button> </div>
+            <div class="col-md-3 col-md-offset-1 vert-offset-bottom-2"> <button type='submit' class='btn btn-info'
+                    name='submit_button' value='Audio' id="Audio"> Audio </button> </div>
+            <div class="col-md-12">
+                {{description}}
+            </div>
+        </form>
+    </div>
+</body>
+{% include "footer.html" %}
+
+</html>

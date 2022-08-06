@@ -1,0 +1,48 @@
+<html>
+<head>
+    <title>Profile</title>
+    <link href="{{url_for('static', filename='css/bootstrap.css')}}" rel="stylesheet" type="text/css">
+    <link href="{{url_for('static', filename='css/bootstrap.min.css')}}" rel="stylesheet" type="text/css">
+    <link href="{{url_for('static', filename='css/style2.css')}}" rel="stylesheet" type="text/css">
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css" rel="stylesheet" />
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"> </script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"> </script>
+    <style>
+        body{
+            overflow-x: hidden;
+        }
+    </style>
+</head>
+
+<body>
+    {% if "admin" in user %}
+        {% include "adminheader.html" %}
+    {% elif "editor" in user %}
+        {% include "editorheader.html" %}
+    {% else %}
+        {% include "userheader.html" %}
+    {%endif%}
+	{% for mesg in get_flashed_messages() %}
+		<p style="text-align: center; color: crimson;">{{mesg}}</p>
+    {% endfor %}
+    <form action="/profile" method="POST" enctype="multipart/form-data">
+        <div class="container vert-offset-top-1 divbg">
+            <h2> Welcome, {{name}} </h2>
+            <h3> You're {{role}}
+                <div class="well">
+                    <img height="300px" width="300px" src="{{image}}" alt="{{name}}">
+                    <h3 class="card-title"> Name: {{name}} </h3>
+                    <p class="card-text"> Email: {{email}}</p>
+                    <p class="card-text"> Password: {{password}}</p>
+                    <p class="card-text"> Address: {{address}} </p>
+                    <button type="submit" class="btn btn-danger" name="edit" value = "edit"> Edit </button>
+                    <button type="submit" class="btn btn-warning"> <input type="file" name="image" value = "image"> </button>
+                    <button type="submit" class="btn btn-success" name="upload" value = "upload"> Upload </button>
+                </div>
+        </div>
+    </form>
+</body>
+{% include "footer.html" %}
+
+</html>

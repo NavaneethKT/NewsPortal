@@ -1,0 +1,57 @@
+<html>
+
+<head>
+    <title> My Posts </title>
+    <link rel="shortcut icon" type="image/x-icon" href="{{url_for('static', filename='favicon.png')}}">
+    <link href="{{url_for('static', filename='css/bootstrap.css')}}" rel="stylesheet" type="text/css">
+    <link href="{{url_for('static', filename='css/bootstrap.min.css')}}" rel="stylesheet" type="text/css">
+    <link href="{{url_for('static', filename='css/style2.css')}}" rel="stylesheet" type="text/css">
+    <style>
+        #delete {
+            margin-left: 370px;
+        }
+    </style>
+</head>
+
+<body>
+    {% if "admin" in user %}
+    {% include "adminheader.html" %}
+    {% elif "editor" in user %}
+    {% include "editorheader.html" %}
+    {% else %}
+    {% include "userheader.html" %}
+    {%endif%}
+    <form action="/viewposts" method="POST">
+        <div>
+            <div class="col-md-12 container divbg  vert-offset-top-1">
+                <h1 class="col-md-offset-5"> Your Articles </h1>
+            </div>
+            {% for post in posts %}
+            <div class="well divbg col-md-8 col-md-offset-2 vert-offset-top-3">
+                <div class="col-md-3 col-md-offset-1 vert-offset-bottom-2"> <button type='submit'
+                        class='btn btn-primary' name='submit_button' value='delete' id="delete"> Delete Post </button>
+                </div>
+                <div class="col-md-12 col-md-offset-0">
+                    <h1> {{post[0]}} </h1>
+                </div>
+                <div class="col-md-12 col-md-offset-0"> <i>
+                        <p> Category: {{post[1]}} </p>
+                    </i> </div>
+                <div class="col-md-12 col-md-offset-0">
+                    <p> <i> By {{post[5][0]}} - {{post[5][1]}} </i> </p>
+                </div>
+                <div class="col-md-12 col-md-offset-0">
+                    <p> <i> {{post[4]}} </i> </p>
+                </div>
+                <div class="col-md-12"> <img class="img-responsive img-rounded" height="500px" width="820px"
+                        src={{post[2]}}> </div>
+                <div class="col-md-12"> {{post[3]}}</div>
+                <input type="hidden" name="aid" value="{{post[6]}}"/>
+            </div>
+            {%endfor%}
+        </div>
+    </form>
+</body>
+{% include "footer.html" %}
+
+</html>

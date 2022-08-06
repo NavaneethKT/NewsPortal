@@ -1,0 +1,35 @@
+<html>
+
+<head>
+    <title> Home </title>
+    <link rel="shortcut icon" type = "image/x-icon" href = "{{url_for('static', filename='favicon.png')}}">
+    <link href="{{url_for('static', filename='css/bootstrap.css')}}" rel="stylesheet" type="text/css">
+    <link href="{{url_for('static', filename='css/bootstrap.min.css')}}" rel="stylesheet" type="text/css">
+    <link href="{{url_for('static', filename='css/style2.css')}}" rel="stylesheet" type="text/css">
+    <style>
+        body{
+            overflow-x: hidden;
+        }
+    </style>
+</head>
+{% include "header.html" %}
+
+<body>
+    <form action="/registration" method="POST">
+        <div class="jumbotron vert-offset-top-3" style="background: #FDEDEC ; background-image:url(londonbg.png)">
+            <div class="container">
+                <div class="display-3">
+                    <h1> Namaste. </h1>
+                </div>
+                <p> Newspaper X is a community of active journalists who are passionate about their work and the impact
+                    it has on others. Our work is a crosspoint of politics, business, sports, tech, film and world news.
+                </p>
+                <p> Come, be a part of it. </p>
+                <button type="submit" class="btn btn-primary display-2" name="login"> Get Started >> </button>
+            </div>
+        </div>
+    </form>
+</body>
+{% include "footer.html" %}
+
+</html>

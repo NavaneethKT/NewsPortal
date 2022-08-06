@@ -1,0 +1,40 @@
+<html>
+
+<head>
+    <title>User Profile</title>
+    <link rel="shortcut icon" type="image/x-icon" href="{{url_for('static', filename='favicon.png')}}">
+        <link href="{{url_for('static', filename='css/bootstrap.css')}}" rel="stylesheet" type="text/css">
+        <link href="{{url_for('static', filename='css/bootstrap.min.css')}}" rel="stylesheet" type="text/css">
+        <link href="{{url_for('static', filename='css/style2.css')}}" rel="stylesheet" type="text/css">
+        <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css" rel="stylesheet" />
+        <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet" />
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"> </script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"> </script>
+</head>
+
+<body>
+    {% if "admin" in user %}
+    {% include "adminheader.html" %}
+    {% elif "editor" in user %}
+    {% include "editorheader.html" %}
+    {% else %}
+    {% include "userheader.html" %}
+    {%endif%}
+    <form action="/edit" method="POST">
+        <div class="well divbg col-md-12 vert-offset-top-1">
+            <h2> Edit your profile</h2>
+            <div>
+                <h4 class="card-title"> Your Name&nbsp;&nbsp;<input type="text" value="{{name}}" name="n"> </h4>
+                <p class="card-title"> Your Email&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="email"
+                        value="{{email}}" name="e"> </p>
+                <p class="card-title"> Your Password&nbsp;<input type="text" value="{{password}}" name="p"> </p>
+                <p class="card-title"> Your Address&nbsp;</p>
+                <textarea name="a" rows="7" cols="32"> {{address}} </textarea>
+                <div class="col-md-12 vert-offset-top-1"> <button type="submit" class="btn btn-primary" name="update">
+                        Save Changes </button> </div>
+            </div>
+        </div>
+    </form>
+</body>
+{% include "footer.html" %}
+</html>

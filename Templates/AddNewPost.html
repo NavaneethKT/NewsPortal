@@ -1,0 +1,61 @@
+<html>
+
+<head>
+    <title> Add An Article </title>
+    <link rel="shortcut icon" type="image/x-icon" href="{{url_for('static', filename='favicon.png')}}">
+    <link href="{{url_for('static', filename='css/bootstrap.css')}}" rel="stylesheet" type="text/css">
+    <link href="{{url_for('static', filename='css/bootstrap.min.css')}}" rel="stylesheet" type="text/css">
+    <link href="{{url_for('static', filename='css/style2.css')}}" rel="stylesheet" type="text/css">
+    <style>
+        #matter {
+            margin-left: 570px;
+        }
+    </style>
+</head>
+
+<body>
+    {% include "editorheader.html" %}
+    {% for mesg in get_flashed_messages() %}
+		<p style="text-align: center; color: crimson;">{{mesg}}</p>
+    {% endfor %}
+    <form action="/addnewpost" method="POST" enctype="multipart/form-data">
+        <div class="container divbg col-md-8 col-md-offset-2 vert-offset-top-1">
+            <div class="col-sm-offset-4">
+                <h1> Add An Article </h1>
+            </div>
+            <div class="col-sm-4 col-sm-offset-2 vert-offset-top-2"> <label class="control-label"> Heading </label>
+            </div>
+            <div class="col-sm-6 vert-offset-top-2"> <input type="text" class="form-control" name="head"> </div><br><br><br>
+
+            <div class="col-sm-4 col-sm-offset-2 vert-offset-top-1"> <label class="control-label"> Category </label>
+            </div>
+            <div class="col-sm-6 vert-offset-top-1">
+                <select class="form-control" name="cat">
+                    <option> Select </option>
+                    <option> Politics </option>
+                    <option> Business </option>
+                    <option> Sports </option>
+                    <option> Film </option>
+                    <option> Tech </option>
+                    <option> World </option>
+                </select><br>
+            </div>
+
+            <div class="col-sm-4 col-sm-offset-2 vert-offset-top-2"> <label class="control-label"> Image </label> </div>
+            <div class="col-sm-6 vert-offset-top-2"> <input type="file" name="image"><br> </div>
+
+            <div class="col-sm-12 col-sm-offset-2  vert-offset-top-2"> <label class="control-label"> Description
+                </label> </div>
+            <textarea class="col-sm-4  vert-offset-top-1 form-control" rows="5" name="descri" id="matter"> </textarea><br><br><br>
+
+            <div class="col-sm-12 col-sm-offset-5 vert-offset-top-2">
+                <br><br><a href="login.html"> <button type="submit" class="btn btn-primary" name="postart"> Submit </button><br><br>
+                </a>
+            </div>
+
+        </div>
+    </form>
+</body>
+{% include "footer.html" %}
+
+</html>

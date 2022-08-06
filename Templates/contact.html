@@ -1,0 +1,59 @@
+<html>
+
+<head>
+    <title> Contact </title>
+    <link rel="shortcut icon" type = "image/x-icon" href = "{{url_for('static', filename='favicon.png')}}">
+    <link href="{{url_for('static', filename='css/bootstrap.css')}}" rel="stylesheet" type="text/css">
+    <link href="{{url_for('static', filename='css/bootstrap.min.css')}}" rel="stylesheet" type="text/css">
+    <link href="{{url_for('static', filename='css/style2.css')}}" rel="stylesheet" type="text/css">
+    <style>
+        body{
+            overflow-x: hidden;
+        }
+    </style>
+</head>
+
+<body>
+    {% if "admin" in user %}
+    {% include "adminheader.html" %}
+    {% elif "editor" in user %}
+    {% include "editorheader.html" %}
+    {% else %}
+    {% include "userheader.html" %}
+    {%endif%}
+    <div class="well divbg col-md-8 col-md-offset-2 vert-offset-top-1">
+        <form>
+            <div class="col-md-12 col-md-offset-4">
+                <h1> Contact Us </h1>
+            </div>
+            <div class="col-md-12 vert-offset-top-1">
+                <div class="col-md-12">
+                    <h2> Our Office Location </h2>
+                </div>
+                <div class="col-md-12"><iframe
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1903.8254013314236!2d78.38151995803165!3d17.38052819702071!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bcb942a2497f349%3A0x5c30ca8d2ffb8734!2sVasavi%20College%20of%20Engineering!5e0!3m2!1sen!2sin!4v1640431535233!5m2!1sen!2sin"
+                        width="400" height="300" style="border:0;" allowfullscreen="" loading="lazy"></iframe></div>
+                <br />
+            </div>
+            <div class="col-md-12 vert-offset-top-2">
+                <div class="col-md-12">
+                    <h3> Our Address </h3>
+                </div>
+                <div class="col-md-12">
+                    <p>
+                    <h4>Newspaper X </h4> <b>IbrahimBagh, Hyderabad, Telangana, 500089<b> </p>
+                </div>
+                <div class="col-md-12">
+                    <h3> Contact Us </h3>
+                </div>
+                <div class="col-md-12">
+                    <p> <b> enquiries@newspaperx.com <b> </p>
+                    <p> <b> 040 2314 6098 </b> </p>
+                </div>
+            </div>
+        </form>
+    </div>
+</body>
+{% include "footer.html" %}
+
+</html>

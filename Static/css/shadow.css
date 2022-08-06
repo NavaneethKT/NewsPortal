@@ -1,0 +1,17 @@
+.boxshadow
+{
+	box-shadow: 10px 5px 10px 5px #B0BEC5;
+}
+.textshadow
+{
+	text-shadow: 5px 5px 5px gray;
+}
+body
+{
+	background-image: url(../image/bend.jpg); 
+	background-size: 100% 100%;
+}
+.divbg
+{
+	background-image: url(../image/clouds.jpg);
+}

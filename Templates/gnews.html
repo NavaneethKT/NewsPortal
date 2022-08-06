@@ -1,0 +1,83 @@
+<html>
+
+<head>
+    <title> News </title>
+    <link rel="shortcut icon" type="image/x-icon" href="{{url_for('static', filename='favicon.png')}}">
+    <link href="{{url_for('static', filename='css/bootstrap.css')}}" rel="stylesheet" type="text/css">
+    <link href="{{url_for('static', filename='css/bootstrap.min.css')}}" rel="stylesheet" type="text/css">
+    <link href="{{url_for('static', filename='css/style2.css')}}" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" type="text/css" href="{{url_for('static', filename='css/cards.css')}}">
+    <style>
+        body {
+            overflow-x: hidden;
+        }
+
+        #searchbar {
+            margin-left: 670px;
+            padding: 10px;
+        }
+
+        .dates{
+            margin-left: 40px;
+        }
+    </style>
+</head>
+
+<body>
+    {% if "admin" in user %}
+    {% include "adminheader.html" %}
+    {% elif "editor" in user %}
+    {% include "editorheader.html" %}
+    {% else %}
+    {% include "userheader.html" %}
+    {%endif%}
+    <div class="jumbotron">
+        <h5 class="display-4" style="text-align: center; color: #e0595c;">Search for Anything!</h5>
+        <div class="row" id="searchbar">
+            <div class="col-md-6 mb-4">
+                <form class="form-inline" method="POST">
+                    <input class="form-control mr-sm-2" name="searchbar" type="search" placeholder="Search"
+                        aria-label="Search">
+                    <button class="btn btn-outline-danger my-2 my-sm-0" type="submit">Search</button>
+                    <div class="form-inline" style="margin-top: 10px;">
+                        <label for="from" style="color: #e0595c;">From:&nbsp;</label>
+                        <input type="date" id="from" name="from">&nbsp;&nbsp;&nbsp;
+                        <label for="to" style="color: #e0595c;">To:&nbsp;</label>
+                        <input type="date" id="to" name="to">
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    {% for article in articles %}
+    <div class="main">
+        <form action="/readURL" method="POST">
+            <div class="cards">
+                <div class="img">
+                    <a href={{article['url']}}> <img id="cardImage" src={{article['urlToImage']}}>
+                    </a>
+                </div>
+                <div class="title">
+                    <h2 name="title">{{article['title']}}</h2>
+                    <p name="author">By {{article['author']}}</p>
+                </div>
+                <div class="description">
+                    <p>{{article['description']}}</p>
+                    <button name="ReadMore" id="ReadMore">...Read More</button>
+                </div>
+                <div>
+                    <input type="hidden" name="author" value="{{article['author']}}">
+                    <input type="hidden" name="title" value="{{article['title']}}">
+                    <input type="hidden" name="URL" value="{{article['url']}}">
+                    <input type="hidden" name="date" value="{{article['publishedAt']}}">
+                    <input type="hidden" name="content" value="{{article['content']}}">
+                    <input type="hidden" name="source" value="{{article['urlToImage']}}">
+                </div>
+            </div>
+        </form>
+    </div>
+    {% endfor %}
+    {% include "footer.html" %}
+</body>
+
+</html>

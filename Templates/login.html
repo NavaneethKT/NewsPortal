@@ -1,0 +1,32 @@
+<html>
+  <head> 
+	<link rel="shortcut icon" type = "image/x-icon" href = "{{url_for('static', filename='favicon.png')}}">
+    <title> Login </title>
+    <link href="{{url_for('static', filename='css/bootstrap.css')}}" rel="stylesheet" type="text/css">
+    <link href="{{url_for('static', filename='css/bootstrap.min.css')}}" rel="stylesheet" type="text/css">
+    <link href="{{url_for('static', filename='css/style2.css')}}" rel="stylesheet" type="text/css">
+  </head>
+  <body>
+    {% include "header.html" %}
+	{% for mesg in get_flashed_messages() %}
+		<p style="text-align: center; color: crimson;">{{mesg}}</p>
+    {% endfor %}
+    <div class = "well divbg col-md-6 col-md-offset-3 vert-offset-top-4">
+        <form action="/authenticate" method = "POST">
+	    <div class = "col-md-12 col-md-offset-5"> <h1> Login </h1> </div>
+		<div class = "col-md-12 vert-offset-top-2 col-md-offset-2">
+		  <div class = "col-md-3"> <label class = "control-label"> Email </label> </div>
+		  <div class = "col-md-4"> <input type = "email" name = "email"> </div> 
+		</div>
+		<div class = "col-md-12 vert-offset-top-2 col-md-offset-2">
+		  <div class = "col-md-3"> <label class = "control-label"> Password </label> </div>
+		  <div class = "col-md-4"> <input type = "password" name = "password"> </div>
+		</div>
+		<div>
+		  <button class = "col-md-offset-5 vert-offset-top-2 btn btn-warning" type = "submit" name = "login"> Submit </button>
+		</div>
+	   </div>
+	  </form>
+  </body>
+  {% include "footer.html" %}
+</html>
